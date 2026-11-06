@@ -1,0 +1,34 @@
+---
+title: "Sentiment Analysis of Notes from Underground"
+author: "Esra Dogan"
+format: html
+editor: visual
+---
+
+## Approach
+
+### Motivation
+
+In Chapter 2 of *Text Mining with R*, Silge and Robinson use sentiment analysis to show how the emotional tone changes across Jane Austen's novels. I will repeat this analysis with Fyodor Dostoevsky's *Notes from Underground*, a book I personally find very pessimistic, and see whether the sentiment results confirm this. I will also add a fourth lexicon to see whether it agrees with the three lexicons used in the book.
+
+### Plan
+
+1.  Reproduce the primary example from Chapter 2 in a Quarto file, using the Jane Austen novels from the `janeaustenr` package and the three lexicons (AFINN, Bing and NRC) from `tidytext`. I will cite the book and the original code from the authors' GitHub repository.
+2.  Download the English translation of *Notes from Underground* from Project Gutenberg with the `gutenbergr` package.
+3.  Tidy the text the same way as in the book: split it into words with `unnest_tokens()` and keep track of line numbers and the two parts of the book.
+4.  Apply the same steps as the original example: join with the Bing lexicon, count positive and negative words in sections of text, and plot net sentiment across the book.
+5.  Add one more lexicon: the `syuzhet` lexicon from the `syuzhet` package, which was built specifically for narrative fiction. I will compare it with AFINN, Bing and NRC on *Notes from Underground*, as the book does with *Pride and Prejudice*.
+6.  Compare the results with the original example: is the overall sentiment lower than in Austen's novels, and is there a difference between Part I and Part II?
+
+### Anticipated Challenges
+
+- AFINN and NRC are downloaded through the `textdata` package, which asks for confirmation the first time. This can stop the Quarto file from rendering, so I will download them once beforehand.
+- Project Gutenberg texts include extra text at the beginning and end (titles, license), which I may need to remove.
+- The book is a translation from Russian, so the results reflect the translator's word choices, not Dostoevsky's original words.
+- The book is much shorter than Austen's novels, so I may need smaller sections than 80 lines to see changes across the story.
+- As with "miss" in Austen's novels, some words may be classified incorrectly, so I will check which words contribute the most to the sentiment scores.
+
+### References
+
+- Silge, J., & Robinson, D. (2017). *Text Mining with R: A Tidy Approach*. O'Reilly. <https://www.tidytextmining.com/sentiment.html>
+- Original code: <https://github.com/juliasilge/tidy-text-mining/blob/master/02-sentiment-analysis.Rmd>
